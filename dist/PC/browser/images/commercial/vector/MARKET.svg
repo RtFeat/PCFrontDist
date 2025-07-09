@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+<defs>
+<mask id="ipSMarketAnalysis0">
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+<path stroke="#fff" d="m4.112 39.03l12.176-12.3l6.58 6.3L30.91 26l4.48 4.368"/>
+</g>
+</mask>
+</defs>
+<path fill="#ffffff" d="M0 0h48v48H0z" mask="url(#ipSMarketAnalysis0)"/>
+</svg>
