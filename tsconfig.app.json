@@ -4,12 +4,17 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/tweakpane-fix.d.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts"
-  ]
+  ],
 }

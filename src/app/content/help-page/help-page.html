@@ -1,0 +1,75 @@
+<!-- Loading overlay -->
+<div class="loading-overlay" [class.hidden]="!isLoading()">
+	<div class="loader"></div>
+  </div>
+  
+  <!-- Header -->
+  <header>
+	<div class="inner">
+	  <div class="logo">
+		<div class="donate-link" role="button">Марс</div>
+	  </div>
+	  <div class="burger"></div>
+	  <nav class="logo-platforma">
+		<a href="/advertisers"><img src="images/logo_platforma.svg" alt="Logo Platforma"></a>
+	  </nav>
+	  <div class="donate-link" role="button">{{ marsDate }}</div>
+	</div>
+  </header>
+  
+  <!-- Main slider -->
+  <main (keydown)="onKeyDown($event)" tabindex="0" role="region" aria-label="Animal species slider" (wheel)="onWheel($event)">
+	<div id="slider">
+	  <!-- WebGL Canvas Container -->
+	  <div #sliderContainer class="slider-canvas-container"></div>
+	  <div class="slider-inner">
+		<div id="slider-content">
+		  <div class="meta">Помогаем и поддерживаем</div>
+		  <h2 #slideTitle id="slide-title" [innerHTML]="currentAnimal().name"></h2>
+		  
+		  <!-- Hidden title spans for accessibility -->
+		  <span 
+			*ngFor="let animal of animals; trackBy: trackByAnimalId" 
+			[attr.data-slide-title]="animal.id"
+			[innerHTML]="animal.name"
+			class="sr-only">
+		  </span>
+		  
+		  <div class="meta" #slideDescription id="slide-description">{{ currentAnimal().description }}</div>
+          <ng-container *ngIf="currentSlide() === animals.length - 1">
+            <button 
+              (click)="goToAdvertisers()" 
+              class="return-btn"
+              [class.visible]="isReturnBtnVisible() && !isReturnBtnHiding()"
+              [class.hide]="isReturnBtnHiding()"
+              [style.pointer-events]="isReturnBtnVisible() && !isReturnBtnHiding() ? 'auto' : 'none'"
+              tabindex="-1"
+              [attr.aria-hidden]="!isReturnBtnVisible()"
+            >Выход в открытый космос</button>
+          </ng-container>
+		  <div #slideStatus class="slide-status" id="slide-status">{{ currentAnimal().status }}</div>
+		  
+		  <!-- Hidden status spans for accessibility -->
+		  <span 
+			*ngFor="let animal of animals; trackBy: trackByAnimalId" 
+			[attr.data-slide-status]="animal.id"
+			class="sr-only"
+			[innerHTML]="animal.status">
+		  </span>
+		</div>
+		<div id="pagination" role="tablist" aria-label="Slide navigation">
+			<button 
+			  *ngFor="let nav of navigationItems(); trackBy: trackByIndex"
+			  type="button"
+			  role="tab"
+			  [class.active]="nav.isActive"
+			  [attr.aria-selected]="nav.isActive"
+			  [attr.aria-label]="'Go to slide ' + (nav.index + 1) + ': ' + animals[nav.index].name"
+			  [attr.data-slide]="nav.index"
+			  (click)="onSlideClick(nav.index)"
+			  [disabled]="isAnimating()">
+			</button>
+		  </div>
+	  </div>
+	</div>
+  </main>

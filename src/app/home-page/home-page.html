@@ -1,0 +1,9 @@
+<app-background-canvas ></app-background-canvas>
+<div class="banner">Вращайте и масштабируйте для обзора. Выберите планету для перехода к ее разделу.</div>
+<button class="btn btn-right" id="fullscreenBtn">Во весь экран</button>
+<div class="webgl" #webglCanvas></div>
+<div class="destination-info" [class.visible]="isHovering">
+  <h2 #destinationTitle></h2>
+</div>
+<div routerLink="/advertisers" class="banner_logo"><img class="logo_platforma" src="images/logo_platforma.svg" alt="logo_platforma"></div>
+<router-outlet></router-outlet>
